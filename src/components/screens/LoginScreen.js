@@ -47,6 +47,7 @@ export default class LoginScreen extends Component {
     this.setState(newState);
   };
   render() {
+    const { navigation, auth } = this.props;
     return (
       <ImageBackground
         source={require("../../../assets/images/office.jpg")}
@@ -125,7 +126,11 @@ export default class LoginScreen extends Component {
 
           <View style={styles.firstTimeContainer}>
             <Text style={styles.firstTimeText}>First time here?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("SignupScreen");
+              }}
+            >
               <Text style={styles.signupText}>Sign up</Text>
             </TouchableOpacity>
           </View>

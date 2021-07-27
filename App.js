@@ -1,29 +1,17 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import HomeScreen from "./src/components/screens/HomeScreen";
-import LoginScreen from "./src/components/screens/LoginScreen";
-import ProfileScreen from "./src/components/screens/ProfileScreen";
-import SignupScreen from "./src/components/screens/SignupScreen";
-import StartScreen from "./src/components/screens/StartScreen";
-import TabScreen from "./src/components/screens/TabScreen";
+import { Provider } from "react-redux";
+import { store, persistor } from "./src/components/redux/store";
+import AppContainer from "./src/components/navigation/navigation";
+import { PersistGate } from "redux-persist/integration/react";
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      {/*<StartScreen />*/}
-      {/*<LoginScreen />*/}
-      {/*<SignupScreen />*/}
-      {/*<HomeScreen />*/}
-      {/*<ProfileScreen />*/}
-      <TabScreen />
-    </View>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <AppContainer />
+      </PersistGate>
+    </Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-});
+export default App;

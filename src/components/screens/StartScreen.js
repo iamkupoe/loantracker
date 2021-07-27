@@ -10,6 +10,7 @@ import {
 
 class StartScreen extends Component {
   render() {
+    const { navigation, auth } = this.props;
     return (
       <ImageBackground
         source={require("../../../assets/images/office1.jpg")}
@@ -24,11 +25,21 @@ class StartScreen extends Component {
         </View>
 
         <View style={styles.opacityContainer}>
-          <TouchableOpacity style={styles.logInOpacity}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("LoginScreen");
+            }}
+            style={styles.logInOpacity}
+          >
             <Text style={styles.loginText}>Log in</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.signupOpacity}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("SignupScreen");
+            }}
+            style={styles.signupOpacity}
+          >
             <Text style={styles.signupText}>Sign up</Text>
           </TouchableOpacity>
         </View>

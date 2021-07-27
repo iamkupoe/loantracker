@@ -3,9 +3,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 import HomeScreen from "./HomeScreen";
-import StartScreen from "./StartScreen";
-import LoginScreen from "./LoginScreen";
 import ProfileScreen from "./ProfileScreen";
+import NewCustomer from "./NewCustomer";
+import LoanForm from "./LoanForm";
+import History from "./History";
 
 const Tab = createBottomTabNavigator();
 
@@ -80,28 +81,10 @@ function TabScreen() {
           ),
         }}
       />
-      //{" "}
+
       <Tab.Screen
-        name="Start"
-        component={StartScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={require("../../../assets/icons/plus-64.png")}
-              resizeMode="contain"
-              style={{
-                width: 30,
-                height: 30,
-                tintColor: "#fff", //focused ? "#e32f45" : "#748c94",
-              }}
-            />
-          ),
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
-        }}
-      />
-      <Tab.Screen
-        name="Login"
-        component={LoginScreen}
+        name="New"
+        component={NewCustomer}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -112,7 +95,68 @@ function TabScreen() {
               }}
             >
               <Image
-                source={require("../../../assets/icons/loan1.jpg")}
+                source={require("../../../assets/icons/plus-64.png")}
+                resizeMode="contain"
+                style={{
+                  width: 30,
+                  height: 30,
+                  tintColor: focused ? "#e32f45" : "#748c94",
+                }}
+              />
+              <Text
+                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
+              >
+                New
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Loan"
+        component={LoanForm}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 3,
+              }}
+            >
+              <Image
+                source={require("../../../assets/icons/loans.jpg")}
+                resizeMode="contain"
+                style={{
+                  width: 30,
+                  height: 30,
+                  tintColor: focused ? "#e32f45" : "#748c94",
+                }}
+              />
+              <Text
+                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
+              >
+                Loan
+              </Text>
+            </View>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="History"
+        component={History}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 3,
+              }}
+            >
+              <Image
+                source={require("../../../assets/icons/payment-history-100.png")}
                 resizeMode="contain"
                 style={{
                   width: 30,
@@ -129,6 +173,7 @@ function TabScreen() {
           ),
         }}
       />
+
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
@@ -142,7 +187,7 @@ function TabScreen() {
               }}
             >
               <Image
-                source={require("../../../assets/icons/payment-history-100.png")}
+                source={require("../../../assets/icons/user-male-64.png")}
                 resizeMode="contain"
                 style={{
                   width: 25,
