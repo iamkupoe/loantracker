@@ -17,6 +17,7 @@ class LoanForm extends Component {
       loanDate: "",
       repaymentAmount: "",
       repaymentDate: "",
+      deposit: "",
       rate: "",
     };
     this.customerName = this.customerName.bind(this);
@@ -24,6 +25,8 @@ class LoanForm extends Component {
     this.loanDate = this.loanDate.bind(this);
     this.repaymentAmount = this.repaymentAmount.bind(this);
     this.repaymentDate = this.repaymentDate.bind(this);
+    this.deposit = this.deposit.bind(this);
+    this.rate = this.rate.bind(this);
   }
 
   customerName(e) {
@@ -53,6 +56,17 @@ class LoanForm extends Component {
   repaymentDate(e) {
     this.setState({
       repaymentDate: e.target.value,
+    });
+  }
+
+  deposit(e) {
+    this.setState({
+      deposit: e.target.value,
+    });
+  }
+  rate(e) {
+    this.setState({
+      rate: e.target.value,
     });
   }
 
@@ -135,7 +149,7 @@ class LoanForm extends Component {
           </View>
 
           <View style={styles.repaymentContainer}>
-            <Text style={styles.repaymentAmount}>Repayment Date</Text>
+            <Text style={styles.loanDate}>Repayment Date</Text>
 
             <View style={styles.currencyContainer}>
               {/*<Text style={styles.currency}></Text>*/}
@@ -146,6 +160,23 @@ class LoanForm extends Component {
                 value={this.state.repaymentDate}
                 onChangeText={(repaymentDate) => {
                   this.setState({ repaymentDate });
+                }}
+              />
+            </View>
+          </View>
+
+          <View style={styles.repaymentContainer}>
+            <Text style={styles.repaymentAmount}>Deposit GH{"\u20B5"}</Text>
+
+            <View style={styles.currencyContainer}>
+              {/*<Text style={styles.currency}></Text>*/}
+              <TextInput
+                style={styles.inputTest}
+                placeholder="Deposit"
+                keyboardType="numeric"
+                value={this.state.deposit}
+                onChangeText={(deposit) => {
+                  this.setState({ deposit });
                 }}
               />
             </View>
@@ -191,17 +222,17 @@ const styles = StyleSheet.create({
 
   nameContainer: {
     // marginLeft: 30,
-    paddingBottom: 20,
+    paddingBottom: 12,
   },
 
   nameText: {
     fontSize: 20,
-    paddingBottom: 15,
+    paddingBottom: 12,
   },
 
   inputText: {
     backgroundColor: "#fff",
-    height: 50,
+    height: 40,
     width: 330,
     borderRadius: 20,
     fontSize: 15,
@@ -213,12 +244,17 @@ const styles = StyleSheet.create({
 
   loanContainer: {
     // marginLeft: 30,
-    paddingBottom: 20,
+    paddingBottom: 12,
+  },
+
+  loanDate: {
+    fontSize: 18,
+    paddingBottom: 12,
   },
 
   loanAmount: {
-    fontSize: 20,
-    paddingBottom: 15,
+    fontSize: 18,
+    paddingBottom: 12,
   },
 
   currencyContainer: {
@@ -227,12 +263,13 @@ const styles = StyleSheet.create({
 
   currency: {
     fontSize: 18,
+    paddingTop: 12,
     paddingTop: 8,
   },
 
   inputTest: {
     backgroundColor: "#fff",
-    height: 50,
+    height: 40,
     width: 330,
     borderRadius: 20,
     flexDirection: "row",
@@ -244,22 +281,25 @@ const styles = StyleSheet.create({
 
   loanContainer: {
     //marginLeft: 30,
-    paddingBottom: 20,
+    paddingBottom: 12,
+    paddingTop: 8,
   },
 
   repaymentAmount: {
-    fontSize: 20,
-    paddingBottom: 10,
+    fontSize: 18,
+    paddingBottom: 12,
+    paddingTop: 8,
   },
 
   rateContainer: {
     //marginLeft: 30,
-    paddingBottom: 15,
+    paddingBottom: 12,
+    paddingTop: 8,
   },
 
   rateText: {
-    fontSize: 20,
-    paddingBottom: 10,
+    fontSize: 18,
+    paddingBottom: 12,
   },
 
   inputTxt: {
@@ -278,7 +318,7 @@ const styles = StyleSheet.create({
 
   opacityContainer: {
     alignSelf: "center",
-    marginTop: 40,
+    marginTop: 25,
   },
 
   opacity: {

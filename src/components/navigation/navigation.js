@@ -10,6 +10,9 @@ import ProfileScreen from "../screens/ProfileScreen";
 import SignupScreen from "./../screens/SignupScreen";
 import TabScreen from "./../screens/TabScreen";
 import HomeScreen from "./../screens/HomeScreen";
+import LoanForm from "./../screens/LoanForm";
+import NewCustomer from "./../screens/NewCustomer";
+import CalendarScreen from "./../screens/CalendarScreen";
 
 const Stack = createStackNavigator();
 
@@ -55,6 +58,39 @@ function AppContainer({ auth }) {
             }}
             name="TabScreen"
             component={TabScreen}
+          />
+
+          <Stack.Screen
+            options={{
+              headerShown: true,
+              title: "New Loan",
+              headerStyle: {},
+              headerTintColor: "#00ABFE",
+            }}
+            name="LoanForm"
+            component={LoanForm}
+          />
+
+          <Stack.Screen
+            options={{
+              headerShown: true,
+              title: "New Customer",
+              headerStyle: {},
+              headerTintColor: "#00ABFE",
+            }}
+            name="NewCustomer"
+            component={NewCustomer}
+          />
+
+          <Stack.Screen
+            options={{
+              headerShown: true,
+              title: "Calendar",
+              headerStyle: {},
+              headerTintColor: "#00ABFE",
+            }}
+            name="CalendarScreen"
+            component={CalendarScreen}
           />
 
           <Stack.Screen

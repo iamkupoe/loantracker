@@ -5,7 +5,10 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  StatusBar,
   ScrollView,
+  Button,
+  Image,
 } from "react-native";
 
 class NewCustomer extends Component {
@@ -71,16 +74,16 @@ class NewCustomer extends Component {
   };
 
   render() {
-    //console.log(this.props.transact);
+    const { navigation } = this.props;
     return (
       <ScrollView>
         <View style={styles.detailsContainer}>
           <View style={styles.buyingContainer}>
-            <Text style={styles.buyingText}>Name of your company</Text>
+            <Text style={styles.buyingText}>Full Name</Text>
 
             <TextInput
               style={styles.inputText}
-              placeholder="Company Name"
+              placeholder="Full Name"
               value={this.state.companyName}
               onChangeText={(companyName) => {
                 this.setState({ companyName });
@@ -89,11 +92,11 @@ class NewCustomer extends Component {
           </View>
 
           <View style={styles.numberContainer}>
-            <Text style={styles.numberText}>Seller's phone number</Text>
+            <Text style={styles.numberText}>Phone number</Text>
 
             <TextInput
               style={styles.inputText}
-              placeholder="Seller's Number"
+              placeholder="Phone Number"
               keyboardType="numeric"
               value={this.state.sellerPhone}
               onChangeText={(sellerNumber) => {
@@ -103,11 +106,11 @@ class NewCustomer extends Component {
           </View>
 
           <View style={styles.buyingContainer}>
-            <Text style={styles.buyingText}>What are you selling?</Text>
+            <Text style={styles.buyingText}>Date of Birth</Text>
 
             <TextInput
               style={styles.inputText}
-              placeholder="Item Name"
+              placeholder="Date of Birth"
               value={this.state.itemName}
               onChangeText={(itemName) => {
                 this.setState({ itemName });
@@ -116,16 +119,14 @@ class NewCustomer extends Component {
           </View>
 
           <View style={styles.priceContainer}>
-            <Text style={styles.priceText}>
-              What is the price? GH{"\u20B5"}
-            </Text>
+            <Text style={styles.priceText}>Place of Work</Text>
 
             <View style={styles.currencyContainer}>
               {/*<Text style={styles.currency}></Text>*/}
               <TextInput
                 style={styles.inputTest}
-                placeholder="Item Price"
-                keyboardType="numeric"
+                placeholder="Place of Work"
+                keyboardType="text"
                 value={this.state.itemPrice}
                 onChangeText={(itemPrice) => {
                   this.setState({ itemPrice });
@@ -135,23 +136,31 @@ class NewCustomer extends Component {
           </View>
 
           <View style={styles.descriptionContainer}>
-            <Text style={styles.descriptionText}>Description</Text>
+            <Text style={styles.descriptionText}>House Number</Text>
 
             <TextInput
-              style={styles.inputTxt}
-              placeholder="Item Description"
-              autoCorrect={true}
-              editable={true}
-              multiline={true}
-              numberOfLines={2}
-              maxLength={150}
-              value={this.state.itemDescription}
-              onChangeText={(itemDescription) => {
-                this.setState({ itemDescription });
+              style={styles.inputTest}
+              placeholder="House Number"
+              keyboardType="text"
+              value={this.state.itemPrice}
+              onChangeText={(itemPrice) => {
+                this.setState({ itemPrice });
               }}
             />
           </View>
-
+          <View style={styles.imageContainer}>
+            <Image
+              source={require("../../../assets/images/profile.png")}
+              style={{
+                width: 50,
+                height: 50,
+                marginLeft: 50,
+              }}
+            />
+            <TouchableOpacity style={styles.buttonStyle} activeOpacity={0.3}>
+              <Text style={styles.buttonTextStyle}>Upload File</Text>
+            </TouchableOpacity>
+          </View>
           <View style={styles.opacityContainer}>
             <TouchableOpacity
               style={styles.opacity}
@@ -167,7 +176,6 @@ class NewCustomer extends Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   detailsContainer: {
     flex: 1,
@@ -178,12 +186,12 @@ const styles = StyleSheet.create({
 
   buyingContainer: {
     // marginLeft: 30,
-    paddingBottom: 20,
+    paddingBottom: 10,
   },
 
   buyingText: {
     fontSize: 20,
-    paddingBottom: 15,
+    paddingBottom: 10,
   },
 
   inputText: {
@@ -265,7 +273,7 @@ const styles = StyleSheet.create({
 
   opacityContainer: {
     alignSelf: "center",
-    marginTop: 40,
+    marginTop: 30,
   },
 
   opacity: {
@@ -273,6 +281,11 @@ const styles = StyleSheet.create({
     width: 150,
     height: 50,
     borderRadius: 30,
+  },
+
+  buttonTextStyle: {
+    color: "blue",
+    fontSize: 15,
   },
 
   continueText: {

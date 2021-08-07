@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 import HomeScreen from "./HomeScreen";
 import ProfileScreen from "./ProfileScreen";
-import NewCustomer from "./NewCustomer";
+import NewTransaction from "./NewTransaction";
 import LoanForm from "./LoanForm";
 import History from "./History";
 
@@ -84,7 +84,7 @@ function TabScreen() {
 
       <Tab.Screen
         name="New"
-        component={NewCustomer}
+        component={NewTransaction}
         options={{
           tabBarIcon: ({ focused }) => (
             <View
@@ -106,37 +106,7 @@ function TabScreen() {
               <Text
                 style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
               >
-                New
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Loan"
-        component={LoanForm}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 3,
-              }}
-            >
-              <Image
-                source={require("../../../assets/icons/loans.jpg")}
-                resizeMode="contain"
-                style={{
-                  width: 30,
-                  height: 30,
-                  tintColor: focused ? "#e32f45" : "#748c94",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#e32f45" : "#748c94", fontSize: 12 }}
-              >
-                Loan
+                Transactions
               </Text>
             </View>
           ),
@@ -212,7 +182,7 @@ const style = StyleSheet.create({
   shadow: {
     shadowColor: "#7F5DF0",
     shadowOffset: {
-      widht: 0,
+      width: 0,
       height: 10,
     },
     shadowOpacity: 0.25,
