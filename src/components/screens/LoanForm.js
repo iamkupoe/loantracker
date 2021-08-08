@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
+import DatePicker from "react-native-datepicker";
 
 class LoanForm extends Component {
   constructor(props) {
@@ -119,11 +120,43 @@ class LoanForm extends Component {
           <View style={styles.dateContainer}>
             <Text style={styles.loanDate}>Loan Date</Text>
 
-            <TextInput
-              style={styles.inputText}
+            <DatePicker
+              style={{ width: 330, borderRadius: 20 }}
+              date={this.state.loanDate}
+              mode="date"
               placeholder="Loan Date"
-              value={this.state.loanDate}
-              onChangeText={(loanDate) => {
+              format="DD-MM-YYYY"
+              minDate="01-01-2015"
+              maxDate="01-01-2050"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  position: "absolute",
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0,
+                },
+                dateInput: {
+                  marginLeft: 30,
+                  borderRadius: 20,
+                  height: 40,
+                  borderColor: "black",
+                  borderWidth: 0.8,
+                  alignItems: "flex-start",
+                  paddingLeft: 8,
+                },
+                placeholderText: {
+                  fontSize: 15,
+                  color: "gray",
+                },
+                dateText: {
+                  fontSize: 15,
+                  color: "blue",
+                },
+                // ... You can check the source to find the other keys.
+              }}
+              onDateChange={(loanDate) => {
                 this.setState({ loanDate });
               }}
             />
@@ -153,12 +186,43 @@ class LoanForm extends Component {
 
             <View style={styles.currencyContainer}>
               {/*<Text style={styles.currency}></Text>*/}
-              <TextInput
-                style={styles.inputTest}
+              <DatePicker
+                style={{ width: 330, borderRadius: 20 }}
+                date={this.state.repaymentDate}
+                mode="date"
                 placeholder="Repayment Date"
-                keyboardType="numeric"
-                value={this.state.repaymentDate}
-                onChangeText={(repaymentDate) => {
+                format="DD-MM-YYYY"
+                minDate="01-01-2015"
+                maxDate="01-01-2050"
+                confirmBtnText="Confirm"
+                cancelBtnText="Cancel"
+                customStyles={{
+                  dateIcon: {
+                    position: "absolute",
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0,
+                  },
+                  dateInput: {
+                    marginLeft: 30,
+                    borderRadius: 20,
+                    height: 40,
+                    borderColor: "black",
+                    borderWidth: 0.8,
+                    alignItems: "flex-start",
+                    paddingLeft: 8,
+                  },
+                  placeholderText: {
+                    fontSize: 15,
+                    color: "gray",
+                  },
+                  dateText: {
+                    fontSize: 15,
+                    color: "blue",
+                  },
+                  // ... You can check the source to find the other keys.
+                }}
+                onDateChange={(repaymentDate) => {
                   this.setState({ repaymentDate });
                 }}
               />
