@@ -11,64 +11,22 @@ import {
 class History extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      fullName: "",
-      email: "",
-      phoneNumber: "",
-      dateOfBirth: "",
-      placeOfWork: "",
-      houseNumber: "",
-      img: "",
-    };
-    this.itemName = this.itemName.bind(this);
-    this.itemPrice = this.itemPrice.bind(this);
-    this.sellerPhone = this.sellerPhone.bind(this);
-    this.itemDescription = this.itemDescription.bind(this);
+    this.state = {};
   }
 
-  companyName(e) {
-    this.setState({
-      companyName: e.target.value,
-    });
-  }
+  // componentDidUpdate() {
+  //   // console.log(this.state);
+  // }
 
-  sellerPhone(e) {
-    this.setState({
-      sellerPhone: e.target.value,
-    });
-  }
+  // handleOnSubmit = () => {
+  //   const data = this.state;
 
-  itemName(e) {
-    this.setState({
-      itemName: e.target.value,
-    });
-  }
+  //   this.props.transactions(data);
 
-  itemPrice(e) {
-    this.setState({
-      itemPrice: e.target.value,
-    });
-  }
+  //   //this.props.addTransaction(data);
 
-  itemDescription(e) {
-    this.setState({
-      itemDescription: e.target.value,
-    });
-  }
-
-  componentDidUpdate() {
-    // console.log(this.state);
-  }
-
-  handleOnSubmit = () => {
-    const data = this.state;
-
-    this.props.transactions(data);
-
-    //this.props.addTransaction(data);
-
-    this.props.navigation.navigate("Summary");
-  };
+  //   this.props.navigation.navigate("Summary");
+  // };
 
   render() {
     //console.log(this.props.transact);
