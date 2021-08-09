@@ -24,7 +24,7 @@ class ClientList extends Component {
     };
   }
   render() {
-    return <div></div>;
+    return <View></View>;
   }
 }
 
