@@ -4,7 +4,7 @@ import DatePicker from "react-native-datepicker";
 class CalendarScreen extends Component {
   constructor(props) {
     super(props);
-    this.state = { date: "2016-05-15" };
+    this.state = { date: "09-08-2021" };
   }
 
   render() {
@@ -22,12 +22,12 @@ class CalendarScreen extends Component {
         customStyles={{
           dateIcon: {
             position: "absolute",
-            left: 0,
+            left: 50,
             top: 4,
             marginLeft: 15,
           },
           dateInput: {
-            marginLeft: 60,
+            marginLeft: 100,
           },
           // ... You can check the source to find the other keys.
         }}

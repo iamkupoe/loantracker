@@ -10,6 +10,8 @@ import {
   Button,
   Image,
 } from "react-native";
+import { RNCamera } from "react-native-camera";
+import DatePicker from "react-native-datepicker";
 
 class NewCustomer extends Component {
   constructor(props) {
@@ -73,6 +75,14 @@ class NewCustomer extends Component {
     this.props.navigation.navigate("Summary");
   };
 
+  takePicture = async () => {
+    if (this.camera) {
+      const options = { quality: 0.5, base64: true };
+      const data = await this.camera.takePictureAsync(options);
+      console.log(data.uri);
+    }
+  };
+
   render() {
     const { navigation } = this.props;
     return (
@@ -108,14 +118,54 @@ class NewCustomer extends Component {
           <View style={styles.buyingContainer}>
             <Text style={styles.buyingText}>Date of Birth</Text>
 
-            <TextInput
+            <DatePicker
+              style={{ width: 330, borderRadius: 20 }}
+              date={this.state.dateOfBirth}
+              mode="date"
+              placeholder="Date of Birth"
+              format="DD-MM-YYYY"
+              minDate="01-01-2015"
+              maxDate="01-01-2050"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  position: "absolute",
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0,
+                },
+                dateInput: {
+                  marginLeft: 30,
+                  borderRadius: 20,
+                  height: 50,
+                  borderColor: "black",
+                  borderWidth: 0.8,
+                  alignItems: "flex-start",
+                  paddingLeft: 8,
+                },
+                placeholderText: {
+                  fontSize: 15,
+                  color: "gray",
+                },
+                dateText: {
+                  fontSize: 15,
+                  color: "blue",
+                },
+                // ... You can check the source to find the other keys.
+              }}
+              onDateChange={(dateOfBirth) => {
+                this.setState({ dateOfBirth });
+              }}
+            />
+            {/*<TextInput
               style={styles.inputText}
               placeholder="Date of Birth"
               value={this.state.itemName}
               onChangeText={(itemName) => {
                 this.setState({ itemName });
               }}
-            />
+            />*/}
           </View>
 
           <View style={styles.priceContainer}>
@@ -157,9 +207,44 @@ class NewCustomer extends Component {
                 marginLeft: 50,
               }}
             />
-            <TouchableOpacity style={styles.buttonStyle} activeOpacity={0.3}>
-              <Text style={styles.buttonTextStyle}>Upload File</Text>
-            </TouchableOpacity>
+            {/*} // <RNCamera
+            //   ref={(ref) => {
+            //     this.camera = ref;
+            //   }}
+            //   captureAudio={false}
+            //   style={styles.preview}
+            //   type={RNCamera.Constants.Type.back}
+            //   flashMode={RNCamera.Constants.FlashMode.on}
+            //   androidCameraPermissionOptions={{
+            //     title: "Permission to use camera",
+            //     message: "We need your permission to use your camera",
+            //     buttonPositive: "Ok",
+            //     buttonNegative: "Cancel",
+            //   }}
+            //   androidRecordAudioPermissionOptions={{
+            //     title: "Permission to use audio recording",
+            //     message: "We need your permission to use your audio",
+            //     buttonPositive: "Ok",
+            //     buttonNegative: "Cancel",
+            //   }}
+            //   onGoogleVisionBarcodesDetected={({ barcodes }) => {
+            //     console.log(barcodes);
+            //   }}
+            // />
+            // <View
+            //   style={{
+            //     flex: 0,
+            //     flexDirection: "row",
+            //     justifyContent: "center",
+            //   }}
+            // >
+            //   <TouchableOpacity
+            //     onPress={this.takePicture.bind(this)}
+            //     style={styles.capture}
+            //   >
+            //     <Text style={{ fontSize: 14 }}> SNAP </Text>
+            //   </TouchableOpacity>
+            // </View>*/}
           </View>
           <View style={styles.opacityContainer}>
             <TouchableOpacity
