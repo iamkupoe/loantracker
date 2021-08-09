@@ -30,7 +30,7 @@ class NewTransaction extends Component {
             >
               <View style={styles.customerContainer}>
                 <Feather name="user-plus" color="purple" size={20} />
-                <Text style={styles.captionText}>New Customer</Text>
+                <Text style={styles.captionText}>Add Client</Text>
               </View>
             </TouchableOpacity>
 
@@ -58,7 +58,7 @@ class NewTransaction extends Component {
             <TouchableOpacity style={styles.opacity}>
               <View style={styles.customerContainer}>
                 <Feather name="book" color="purple" size={20} />
-                <Text style={styles.captionText}>Notes</Text>
+                <Text style={styles.captionText}>Client List</Text>
               </View>
             </TouchableOpacity>
           </View>
