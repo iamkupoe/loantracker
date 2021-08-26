@@ -5,83 +5,102 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  StatusBar,
   ScrollView,
-  Button,
-  Image,
 } from "react-native";
-import { RNCamera } from "react-native-camera";
+import { Avatar } from "react-native-paper";
 import DatePicker from "react-native-datepicker";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 class NewCustomer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       fullName: "",
-      email: "",
       phoneNumber: "",
       dateOfBirth: "",
-      placeOfWork: "",
+      typeOfWork: "",
       houseNumber: "",
       img: "",
     };
-    this.itemName = this.itemName.bind(this);
-    this.itemPrice = this.itemPrice.bind(this);
-    this.sellerPhone = this.sellerPhone.bind(this);
-    this.itemDescription = this.itemDescription.bind(this);
+    this.fullName = this.fullName.bind(this);
+    this.phoneNumber = this.phoneNumber.bind(this);
+    this.dateOfBirth = this.dateOfBirth.bind(this);
+    this.typeOfWork = this.typeOfWork.bind(this);
+    this.houseNumber = this.houseNumber.bind(this);
+    this.img = this.img.bind(this);
   }
 
-  companyName(e) {
+  fullName(e) {
     this.setState({
-      companyName: e.target.value,
+      fullName: e.target.value,
     });
   }
 
-  sellerPhone(e) {
+  phoneNumber(e) {
     this.setState({
-      sellerPhone: e.target.value,
+      phoneNumber: e.target.value,
     });
   }
 
-  itemName(e) {
+  dateOfBirth(e) {
     this.setState({
-      itemName: e.target.value,
+      dateOfBirth: e.target.value,
     });
   }
 
-  itemPrice(e) {
+  houseNumber(e) {
     this.setState({
-      itemPrice: e.target.value,
+      houseNumber: e.target.value,
     });
   }
 
-  itemDescription(e) {
+  typeOfWork(e) {
     this.setState({
-      itemDescription: e.target.value,
+      typeOfWork: e.target.value,
+    });
+  }
+  img(e) {
+    this.setState({
+      img: e.target.value,
     });
   }
 
-  componentDidUpdate() {
-    // console.log(this.state);
-  }
+  // componentDidUpdate() {
+  //   // console.log(this.state);
+  // }
 
-  handleOnSubmit = () => {
-    const data = this.state;
-
-    this.props.transactions(data);
-
-    //this.props.addTransaction(data);
-
-    this.props.navigation.navigate("Summary");
+  handleOnSubmit = (e) => {
+    e.preventDefault();
+    const newClient = {
+      fullName: this.state.fullName,
+      phoneNumber: this.state.phoneNumber,
+      dateOfBirth: this.state.dateOfBirth,
+      typeOFWork: this.state.typeOfWork,
+      houseNumber: this.state.houseNumber,
+    };
+    this.props.addClient(newClient);
+    this.setState({
+      fullName: "",
+      phoneNumber: "",
+      dateOfBirth: "",
+      typeOfWork: "",
+      houseNumber: "",
+      img: "",
+    });
   };
 
-  takePicture = async () => {
-    if (this.camera) {
-      const options = { quality: 0.5, base64: true };
-      const data = await this.camera.takePictureAsync(options);
-      console.log(data.uri);
-    }
+  handleImg = (e) => {
+    e.preventDefault();
+    img = this.state.img;
   };
+
+  // takePicture = async () => {
+  //   if (this.camera) {
+  //     const options = { quality: 0.5, base64: true };
+  //     const data = await this.camera.takePictureAsync(options);
+  //     console.log(data.uri);
+  //   }
+  // };
 
   render() {
     const { navigation } = this.props;
@@ -94,9 +113,10 @@ class NewCustomer extends Component {
             <TextInput
               style={styles.inputText}
               placeholder="Full Name"
-              value={this.state.companyName}
-              onChangeText={(companyName) => {
-                this.setState({ companyName });
+              name="fullName"
+              value={this.state.fullName}
+              onChangeText={(fullName) => {
+                this.setState({ fullName });
               }}
             />
           </View>
@@ -107,10 +127,11 @@ class NewCustomer extends Component {
             <TextInput
               style={styles.inputText}
               placeholder="Phone Number"
+              name="phoneNumber"
               keyboardType="numeric"
-              value={this.state.sellerPhone}
-              onChangeText={(sellerNumber) => {
-                this.setState({ sellerNumber });
+              value={this.state.phoneNumber}
+              onChangeText={(phoneNumber) => {
+                this.setState({ phoneNumber });
               }}
             />
           </View>
@@ -123,6 +144,7 @@ class NewCustomer extends Component {
               date={this.state.dateOfBirth}
               mode="date"
               placeholder="Date of Birth"
+              name="dateOfBirth"
               format="DD-MM-YYYY"
               minDate="01-01-2015"
               maxDate="01-01-2050"
@@ -169,17 +191,17 @@ class NewCustomer extends Component {
           </View>
 
           <View style={styles.priceContainer}>
-            <Text style={styles.priceText}>Place of Work</Text>
+            <Text style={styles.priceText}>Type of Work</Text>
 
             <View style={styles.currencyContainer}>
               {/*<Text style={styles.currency}></Text>*/}
               <TextInput
                 style={styles.inputTest}
-                placeholder="Place of Work"
-                keyboardType="text"
-                value={this.state.itemPrice}
-                onChangeText={(itemPrice) => {
-                  this.setState({ itemPrice });
+                placeholder="Type of Work"
+                name="typeOfWork"
+                value={this.state.typeOfWork}
+                onChangeText={(typeOfWork) => {
+                  this.setState({ typeOfWork });
                 }}
               />
             </View>
@@ -191,60 +213,38 @@ class NewCustomer extends Component {
             <TextInput
               style={styles.inputTest}
               placeholder="House Number"
-              keyboardType="text"
-              value={this.state.itemPrice}
-              onChangeText={(itemPrice) => {
-                this.setState({ itemPrice });
+              name="houseNumber"
+              value={this.state.houseNumber}
+              onChangeText={(houseNumber) => {
+                this.setState({ houseNumber });
               }}
             />
           </View>
           <View style={styles.imageContainer}>
-            <Image
-              source={require("../../../assets/images/profile.png")}
-              style={{
-                width: 50,
-                height: 50,
-                marginLeft: 50,
+            <Avatar.Image
+              source={{
+                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyX1P01Sd9GmmBcwwObUfbLOsFd8-vkDyEZYfcVrqV9_VeoSASUV9wGi4A0CSGqhiZRWI&usqp=CAU",
               }}
+              size={60}
+              style={{ marginLeft: 40, marginTop: -8 }}
             />
-            {/*} // <RNCamera
-            //   ref={(ref) => {
-            //     this.camera = ref;
-            //   }}
-            //   captureAudio={false}
-            //   style={styles.preview}
-            //   type={RNCamera.Constants.Type.back}
-            //   flashMode={RNCamera.Constants.FlashMode.on}
-            //   androidCameraPermissionOptions={{
-            //     title: "Permission to use camera",
-            //     message: "We need your permission to use your camera",
-            //     buttonPositive: "Ok",
-            //     buttonNegative: "Cancel",
-            //   }}
-            //   androidRecordAudioPermissionOptions={{
-            //     title: "Permission to use audio recording",
-            //     message: "We need your permission to use your audio",
-            //     buttonPositive: "Ok",
-            //     buttonNegative: "Cancel",
-            //   }}
-            //   onGoogleVisionBarcodesDetected={({ barcodes }) => {
-            //     console.log(barcodes);
-            //   }}
-            // />
-            // <View
-            //   style={{
-            //     flex: 0,
-            //     flexDirection: "row",
-            //     justifyContent: "center",
-            //   }}
-            // >
-            //   <TouchableOpacity
-            //     onPress={this.takePicture.bind(this)}
-            //     style={styles.capture}
-            //   >
-            //     <Text style={{ fontSize: 14 }}> SNAP </Text>
-            //   </TouchableOpacity>
-            // </View>*/}
+
+            <TouchableOpacity
+              onPress={() => {
+                this.handleImg();
+              }}
+            >
+              <View
+                style={{
+                  alignItems: "flex-start",
+                  marginTop: -5,
+                  marginLeft: 15,
+                }}
+              >
+                <Icon name="account-edit" color="purple" size={30} />
+              </View>
+              <Text style={{ color: "purple" }}>Upload Image</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.opacityContainer}>
             <TouchableOpacity
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
 
   opacityContainer: {
     alignSelf: "center",
-    marginTop: 30,
+    marginTop: 15,
   },
 
   opacity: {

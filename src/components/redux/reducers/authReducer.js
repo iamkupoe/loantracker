@@ -3,11 +3,6 @@ import { v4 as uuid } from "uuid";
 const initialState = {
   login: false,
   user: null,
-  customers: {},
-  summarys: {},
-  error: {},
-  transactions: {},
-  total: {},
 };
 
 export default (state = initialState, action) => {
@@ -35,49 +30,49 @@ export default (state = initialState, action) => {
     //     customers: [...state.customers, newCustomer],
     //   };
 
-    case "ADD_SUMMARY":
-      const newSummary = {
-        payment: action.payload.overAllPayment,
-        price: action.payload.itemPrice,
-        name: action.payload.companyName,
-        number: action.payload.sellerNumber,
-        item: action.payload.itemName,
-        description: action.payload.itemDescription,
-      };
-      return {
-        ...state,
-        summarys: { ...state.summarys, newSummary },
-      };
+    // case "ADD_SUMMARY":
+    //   const newSummary = {
+    //     payment: action.payload.overAllPayment,
+    //     price: action.payload.itemPrice,
+    //     name: action.payload.companyName,
+    //     number: action.payload.sellerNumber,
+    //     item: action.payload.itemName,
+    //     description: action.payload.itemDescription,
+    //   };
+    //   return {
+    //     ...state,
+    //     summarys: { ...state.summarys, newSummary },
+    //   };
 
-    case "DELETE_TRANSACTION":
-      const filteredTransactions = state.transactions.filter(
-        (transaction) => transaction.id !== action.payload
-      );
-      return { ...state, transactions: filteredTransactions };
+    // case "DELETE_TRANSACTION":
+    //   const filteredTransactions = state.transactions.filter(
+    //     (transaction) => transaction.id !== action.payload
+    //   );
+    //   return { ...state, transactions: filteredTransactions };
 
-      {
-        /*case "EDIT_TRANSACTION":
-      const updatedTransactionsInfo = state.transactions.map((transaction) => {
-        if (transaction.id === action.transaction_id) {
-          return { ...transaction, ...action.updated_info };
-        } else {
-          return transaction;
-        }
-      });
-      return { ...state, transactions: updatedTransactionsInfo };
+    //   {
+    //     /*case "EDIT_TRANSACTION":
+    //   const updatedTransactionsInfo = state.transactions.map((transaction) => {
+    //     if (transaction.id === action.transaction_id) {
+    //       return { ...transaction, ...action.updated_info };
+    //     } else {
+    //       return transaction;
+    //     }
+    //   });
+    //   return { ...state, transactions: updatedTransactionsInfo };
 
-    case "SET_ALL_TRANSACTIONS":
-    return { transactions: action.payload };*/
-      }
+    // case "SET_ALL_TRANSACTIONS":
+    // return { transactions: action.payload };*/
+    //   }
 
-    case "SEND_DATA":
-      return { ...state, transactions: action.data };
+    // case "SEND_DATA":
+    //   return { ...state, transactions: action.data };
 
-    case "SEND_SUMMARY":
-      return { ...state, total: action.data };
+    // case "SEND_SUMMARY":
+    //   return { ...state, total: action.data };
 
-    case "RECEIVE_SUMMARY":
-      return { ...state, summary: action.data };
+    // case "RECEIVE_SUMMARY":
+    // return { ...state, summary: action.data };
 
     default:
       return state;

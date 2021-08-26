@@ -10,8 +10,10 @@ import {
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import {connect} from "react-redux";
+import { createEmailAccount, registerError } from './../redux/actions/authActions';
 
-export default class SignupScreen extends Component {
+ class SignupScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +21,7 @@ export default class SignupScreen extends Component {
       eye: "eye-Off",
       email: "",
       password: "",
+      number: "",
       showPassword: true,
     };
   }
@@ -28,6 +31,9 @@ export default class SignupScreen extends Component {
       [name]: value,
     });
   };
+handleOnSubmit = () => {
+
+}
 
   changePasswordType = () => {
     let newState;
@@ -239,3 +245,18 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
 });
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state,
+  };
+};
+
+function mapDispatchToProps() {
+  return {
+    createEmailAccount,
+    registerError,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps())(SignupScreen);

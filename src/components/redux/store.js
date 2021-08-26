@@ -18,8 +18,8 @@ let store = createStore(
   persistedReducer,
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-    reduxFirestore(firebase)
-    // reduxReactFirebase(firebase)
+    reduxFirestore(firebase),
+    reduxReactFirebase(firebase)
   )
 );
 
