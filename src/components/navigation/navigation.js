@@ -27,7 +27,7 @@ function AppContainer({ auth }) {
               headerShown: false,
             }}
             name="HomeScreen"
-            component={Tabs}
+            component={TabScreen}
           />
 
           <Stack.Screen

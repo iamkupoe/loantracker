@@ -10,19 +10,20 @@ import {
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import {connect} from "react-redux";
-import { createEmailAccount, registerError } from './../redux/actions/authActions';
+import { connect } from "react-redux";
+import {
+  createEmailAccount,
+  registerError,
+} from "./../redux/actions/authActions";
 
- class SignupScreen extends Component {
+class SignupScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      eye: "eye",
-      eye: "eye-Off",
+      name: "",
       email: "",
       password: "",
-      number: "",
-      showPassword: true,
+      confirm: "",
     };
   }
 
@@ -31,27 +32,14 @@ import { createEmailAccount, registerError } from './../redux/actions/authAction
       [name]: value,
     });
   };
-handleOnSubmit = () => {
-
-}
-
-  changePasswordType = () => {
-    let newState;
-    if (this.state.showPassword) {
-      newState = {
-        eye: "show",
-        showPassword: false,
-        password: this.state.password,
-      };
-    } else {
-      newState = {
-        eye: "eye-Off",
-        showPassword: true,
-        password: this.state.password,
-      };
+  handleOnSubmit = () => {
+    if (this.state.password !== this.state.confirm) {
+      this.props.registerError("Passwords do not match");
+      return;
     }
-    this.setState(newState);
+    this.props.createEmailAccount(this.state.email, this.state.password);
   };
+
   render() {
     const { navigation, auth } = this.props;
     return (
@@ -67,6 +55,9 @@ handleOnSubmit = () => {
           </View>
 
           <View style={styles.inputContainer}>
+            {auth.error.register && (
+              <Text style={{ color: "red" }}>{auth.error.register}</Text>
+            )}
             <View style={styles.action}>
               <Feather
                 name="user"
@@ -118,7 +109,7 @@ handleOnSubmit = () => {
                 onChangeText={(text) => {
                   this.handleUpdateState("password", text);
                 }}
-                secureTextEntry={this.state.showPassword}
+                secureTextEntry={true}
                 style={styles.textInput}
                 autoCapitalize="none"
                 onChangeText={(text) => {
@@ -127,28 +118,34 @@ handleOnSubmit = () => {
               />
             </View>
             <View style={styles.action}>
-              <Feather
-                name="phone"
+              <FontAwesome
+                name="lock"
                 color="#fff"
-                size={20}
+                size={27}
                 style={{ paddingTop: 14 }}
               />
               <TextInput
-                placeholder="Number"
-                keyboardType="number-pad"
-                value={this.state.number}
+                placeholder="Confirm"
+                value={this.state.confirm}
                 onChangeText={(text) => {
-                  this.handleUpdateState("number", text);
+                  this.handleUpdateState("confirm", text);
                 }}
+                secureTextEntry={true}
                 style={styles.textInput}
                 autoCapitalize="none"
+                onChangeText={(text) => {
+                  this.handleUpdateState("confirm", text);
+                }}
               />
             </View>
           </View>
 
           <View style={styles.opacityContainer}>
-            <TouchableOpacity style={styles.SignupOpacity}>
-              <Text style={styles.SignupText}>Log in</Text>
+            <TouchableOpacity
+              onPress={this.handleOnSubmit}
+              style={styles.SignupOpacity}
+            >
+              <Text style={styles.SignupText}>Signup</Text>
             </TouchableOpacity>
           </View>
 
@@ -252,11 +249,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-function mapDispatchToProps() {
+const mapDispatchToProps = () => {
   return {
     createEmailAccount,
     registerError,
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps())(SignupScreen);

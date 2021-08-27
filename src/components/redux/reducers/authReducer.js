@@ -1,8 +1,7 @@
-import { v4 as uuid } from "uuid";
-
 const initialState = {
   login: false,
   user: null,
+  error: {},
 };
 
 export default (state = initialState, action) => {

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\iamkupoe\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-redux-firebase^@2.5.0
+  C:\Program Files\nodejs\node.exe C:\Users\iamkupoe\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add firebase
 
 PATH: 
   C:\Python39\Scripts\;C:\Python39\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\WINDOWS\System32\OpenSSH\;C:\Users\iamkupoe\AppData\Roaming\npm;C:\Users\iamkupoe\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\iamkupoe\AppData\Local\Microsoft\WindowsApps;
@@ -14,17 +14,16 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-redux-firebase%5E: Not found
-      at Request.params.callback [as _callback] (C:\Users\iamkupoe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66988:18)
-      at Request.self.callback (C:\Users\iamkupoe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (C:\Users\iamkupoe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141634:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (C:\Users\iamkupoe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141556:12)
+  Error: https://registry.yarnpkg.com/@firebase/firestore/-/firestore-3.0.0.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\iamkupoe\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141289:19)
       at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (internal/streams/readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+      at ClientRequest.emit (events.js:315:20)
+      at TLSSocket.emitRequestTimeout (_http_client.js:784:9)
+      at Object.onceWrapper (events.js:421:28)
+      at TLSSocket.emit (events.js:327:22)
+      at TLSSocket.Socket._onTimeout (net.js:483:8)
+      at listOnTimeout (internal/timers.js:554:17)
+      at processTimers (internal/timers.js:497:7)
 
 npm manifest: 
   {
@@ -63,7 +62,7 @@ npm manifest:
       "react-native-vector-icons": "^8.1.0",
       "react-native-web": "~0.13.12",
       "react-redux": "^7.2.4",
-      "react-redux-firebase": "^3.10.0",
+      "react-redux-firebase": "2.2.5",
       "redux": "^4.1.0",
       "redux-firestore": "^0.15.0",
       "redux-persist": "^6.0.0",
@@ -3463,6 +3462,11 @@ Lockfile:
     dependencies:
       source-map "^0.7.3"
   
+  hoist-non-react-statics@^2.3.1:
+    version "2.5.5"
+    resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+    integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
+  
   hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
     version "3.3.2"
     resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
@@ -4084,7 +4088,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
     integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
   
-  lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.20, lodash@^4.3.0:
+  lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.20, lodash@^4.3.0:
     version "4.17.21"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
     integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -5153,14 +5157,14 @@ Lockfile:
       use-subscription "^1.0.0"
       whatwg-fetch "^3.0.0"
   
-  react-redux-firebase@^3.10.0:
-    version "3.10.0"
-    resolved "https://registry.yarnpkg.com/react-redux-firebase/-/react-redux-firebase-3.10.0.tgz#f4c69145292fd8d0c5f44f53b37a6b307dbf3c56"
-    integrity sha512-reEPqUgNQRR2IHsNHPvyMXRZRZUvbQmA9oWzDBOK1FCxd/MiE9py6R7ezEtKs5iLEH55eDRpVPl2n3bYsndEiQ==
+  react-redux-firebase@2.2.5:
+    version "2.2.5"
+    resolved "https://registry.yarnpkg.com/react-redux-firebase/-/react-redux-firebase-2.2.5.tgz#d409ec326d6da271d931e0c76803a06f95e3ff64"
+    integrity sha512-F3MBhrODxMzSbYoTIOoq2dOJw+kCMkaeXEjcOd3tRu1A9Ncsc9qfmivzA49hR5mvfM2Ld8HR8YEWuj1q/i3SgA==
     dependencies:
-      hoist-non-react-statics "^3.3.2"
-      lodash "^4.17.20"
-      prop-types "^15.7.2"
+      hoist-non-react-statics "^2.3.1"
+      lodash "^4.17.11"
+      prop-types "^15.6.2"
   
   react-redux@^7.2.4:
     version "7.2.4"
