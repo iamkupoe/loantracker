@@ -11,6 +11,7 @@ import Feather from "react-native-vector-icons/Feather";
 import LoanForm from "./LoanForm";
 import NewCustomer from "./NewCustomer";
 import Calendar from "./CalendarScreen";
+import ClientList from "./ClientList";
 
 class NewTransaction extends Component {
   constructor(props) {
@@ -55,7 +56,10 @@ class NewTransaction extends Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.opacity}>
+            <TouchableOpacity
+              style={styles.opacity}
+              onPress={() => navigation.navigate(ClientList)}
+            >
               <View style={styles.customerContainer}>
                 <Feather name="book" color="purple" size={20} />
                 <Text style={styles.captionText}>Client List</Text>

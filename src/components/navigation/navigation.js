@@ -13,6 +13,7 @@ import HomeScreen from "./../screens/HomeScreen";
 import LoanForm from "./../screens/LoanForm";
 import NewCustomer from "./../screens/NewCustomer";
 import CalendarScreen from "./../screens/CalendarScreen";
+import ClientList from "./../screens/ClientList";
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,7 @@ function AppContainer({ auth }) {
               headerShown: false,
             }}
             name="HomeScreen"
-            component={Tabs}
+            component={TabScreen}
           />
 
           <Stack.Screen
@@ -56,8 +57,8 @@ function AppContainer({ auth }) {
             options={{
               headerShown: false,
             }}
-            name="TabScreen"
-            component={TabScreen}
+            name="SignupScreen"
+            component={SignupScreen}
           />
 
           <Stack.Screen
@@ -95,19 +96,30 @@ function AppContainer({ auth }) {
 
           <Stack.Screen
             options={{
-              headerShown: false,
+              headerShown: true,
+              title: "Client List",
+              headerStyle: {},
+              headerTintColor: "#00ABFE",
             }}
-            name="LoginScreen"
-            component={LogInScreen}
+            name="ClientList"
+            component={ClientList}
           />
 
           <Stack.Screen
             options={{
               headerShown: false,
             }}
+            name="LoginScreen"
+            component={LogInScreen}
+          />
+
+          {/*<Stack.Screen
+            options={{
+              headerShown: false,
+            }}
             name="SignupScreen"
             component={SignupScreen}
-          />
+          />*/}
         </Stack.Navigator>
       )}
     </NavigationContainer>

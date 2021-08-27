@@ -1,20 +1,16 @@
 import firebase from "../../firebase/firebase";
 
-export function createEmailAccount(name, number, email, password) {
+export function createEmailAccount(email, password, confirm) {
   return async (dispatch, { getFirestore }) => {
     try {
       const user = await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password);
-
-      await firebase
-        .firestore()
-        .collection("customers")
-        .doc(user.user.uid)
-        .set({
-          name: name,
-          number: number,
-        });
+      console.log(user);
+      // await firebase.firestore().collection("users").doc(user.user.uid).set({
+      //   name: name,
+      //   number: number,
+      // });
       dispatch(loggedIn(user));
     } catch (error) {
       dispatch(registerError(error.message));
@@ -36,12 +32,39 @@ export function loginEmailAccount(email, password) {
   };
 }
 
+function loggedIn(user) {
+  return {
+    type: "LOGGED_IN",
+    payload: user,
+  };
+}
+
 export function logout() {
   return async (dispatch) => {
     try {
       await firebase.auth().signOut();
       dispatch(loggedOut());
     } catch (error) {}
+  };
+}
+
+function loggedOut() {
+  return {
+    type: "LOGGED_OUT",
+  };
+}
+
+export function registerError(error) {
+  return {
+    type: "REGISTER_ERROR",
+    payload: error,
+  };
+}
+
+export function loginError(error) {
+  return {
+    type: "LOGIN_ERROR",
+    payload: error,
   };
 }
 
@@ -69,7 +92,8 @@ export function logout() {
   };
 };*/
 }
-
+{
+  /*
 export const addSummary = (summary) => {
   console.log("add summary action", summary);
   return (dispatch, state, { getFirestore }) => {
@@ -120,36 +144,11 @@ export const getSummary = () => {
       console.log(error.message);
     }
   };
-};
-
-function loggedIn(user) {
-  return {
-    type: "LOGGED_IN",
-    payload: user,
-  };
+};*/
 }
 
-function loggedOut() {
-  return {
-    type: "LOGGED_OUT",
-  };
-}
-
-export function registerError(error) {
-  return {
-    type: "REGISTER_ERROR",
-    payload: error,
-  };
-}
-
-export function loginError(error) {
-  return {
-    type: "LOGIN_ERROR",
-    payload: error,
-  };
-}
-
-export function transactions(data) {
+{
+  /*export function transactions(data) {
   return {
     type: "SEND_DATA",
     data: data,
@@ -168,4 +167,5 @@ export function summary(data) {
     type: "RECEIVE_SUMMARY",
     data: data,
   };
+}*/
 }

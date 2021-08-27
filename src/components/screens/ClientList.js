@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
+import NewCustomer from "./NewCustomer";
 
 class ClientList extends Component {
   constructor(props) {
@@ -23,8 +24,31 @@ class ClientList extends Component {
       ],
     };
   }
+
+  addNewClient = (newClient) => {
+    this.setState({
+      clients: [...this.state.clients, newClient],
+    });
+  };
+
   render() {
-    return <div></div>;
+    return (
+      <View>
+        <View>
+          {this.state.clients.map((item) => {
+            return (
+              <View>
+                <Text>Full Name: {item.fullName}</Text>
+                <Text>Phone Number: {item.phoneNumber}</Text>
+                <Text>Date of Birth: {item.dateOfBirth}</Text>
+                <Text>Type of Work: {item.typeOfWork}</Text>
+                <Text>House Number: {item.houseNumber}</Text>
+              </View>
+            );
+          })}
+        </View>
+      </View>
+    );
   }
 }
 
