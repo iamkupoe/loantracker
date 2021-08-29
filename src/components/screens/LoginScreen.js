@@ -10,8 +10,10 @@ import {
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { connect } from "react-redux";
+import { loginEmailAccount } from "../redux/actions/authActions";
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,6 +48,11 @@ export default class LoginScreen extends Component {
     }
     this.setState(newState);
   };
+
+  handleOnSubmit = () => {
+    this.props.loginEmailAccount(this.state.email, this.state.password);
+  };
+
   render() {
     const { navigation, auth } = this.props;
     return (
@@ -119,7 +126,10 @@ export default class LoginScreen extends Component {
           </View>
 
           <View style={styles.opacityContainer}>
-            <TouchableOpacity style={styles.logInOpacity}>
+            <TouchableOpacity
+              onPress={this.handleOnSubmit}
+              style={styles.logInOpacity}
+            >
               <Text style={styles.loginText}>Log in</Text>
             </TouchableOpacity>
           </View>
@@ -217,3 +227,11 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
 });
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state,
+  };
+};
+
+export default connect(mapStateToProps, { loginEmailAccount })(LoginScreen);

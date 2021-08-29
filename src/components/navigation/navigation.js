@@ -13,6 +13,7 @@ import HomeScreen from "./../screens/HomeScreen";
 import LoanForm from "./../screens/LoanForm";
 import NewCustomer from "./../screens/NewCustomer";
 import CalendarScreen from "./../screens/CalendarScreen";
+import HistoryScreen from "./../screens/History";
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,7 @@ function AppContainer({ auth }) {
               headerShown: false,
             }}
             name="HomeScreen"
-            component={Tabs}
+            component={TabScreen}
           />
 
           <Stack.Screen
@@ -49,17 +50,6 @@ function AppContainer({ auth }) {
             name="HistoryScreen"
             component={HistoryScreen}
           />
-        </Stack.Navigator>
-      ) : (
-        <Stack.Navigator initialRouteName="StartScreen">
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="TabScreen"
-            component={TabScreen}
-          />
-
           <Stack.Screen
             options={{
               headerShown: true,
@@ -91,6 +81,16 @@ function AppContainer({ auth }) {
             }}
             name="CalendarScreen"
             component={CalendarScreen}
+          />
+        </Stack.Navigator>
+      ) : (
+        <Stack.Navigator initialRouteName="StartScreen">
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="StartScreen"
+            component={StartScreen}
           />
 
           <Stack.Screen
