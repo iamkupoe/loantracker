@@ -1,6 +1,6 @@
 import firebase from "../../firebase/firebase";
 
-export function createEmailAccount(name, number, email, password) {
+export function createEmailAccount(email, password, name) {
   return async (dispatch, { getFirestore }) => {
     try {
       const user = await firebase
@@ -13,7 +13,6 @@ export function createEmailAccount(name, number, email, password) {
         .doc(user.user.uid)
         .set({
           name: name,
-          number: number,
         });
       dispatch(loggedIn(user));
     } catch (error) {
