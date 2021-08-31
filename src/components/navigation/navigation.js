@@ -14,6 +14,7 @@ import LoanForm from "./../screens/LoanForm";
 import NewCustomer from "./../screens/NewCustomer";
 import CalendarScreen from "./../screens/CalendarScreen";
 import ClientList from "./../screens/ClientList";
+import HistoryScreen from "./../screens/History";
 
 const Stack = createStackNavigator();
 
@@ -42,25 +43,6 @@ function AppContainer({ auth }) {
             name="EditProfileScreen"
             component={ProfileScreen}
           />
-
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="HistoryScreen"
-            component={HistoryScreen}
-          />
-        </Stack.Navigator>
-      ) : (
-        <Stack.Navigator initialRouteName="StartScreen">
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="SignupScreen"
-            component={SignupScreen}
-          />
-
           <Stack.Screen
             options={{
               headerShown: true,
@@ -104,6 +86,30 @@ function AppContainer({ auth }) {
             name="ClientList"
             component={ClientList}
           />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="HistoryScreen"
+            component={HistoryScreen}
+          />
+        </Stack.Navigator>
+      ) : (
+        <Stack.Navigator initialRouteName="StartScreen">
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="StartScreen"
+            component={StartScreen}
+          />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="SignupScreen"
+            component={SignupScreen}
+          />
 
           <Stack.Screen
             options={{
@@ -112,14 +118,6 @@ function AppContainer({ auth }) {
             name="LoginScreen"
             component={LogInScreen}
           />
-
-          {/*<Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="SignupScreen"
-            component={SignupScreen}
-          />*/}
         </Stack.Navigator>
       )}
     </NavigationContainer>
